@@ -3,11 +3,16 @@ import { Button } from '../Button/Button'
 import { Display } from '../Display/Display'
 
 const App = () => {
-
-  const [counter, setCount] = useState(0)
+  const defaultCount = JSON.parse(localStorage.getItem('counter')) || 0
+  const [counter, setCount] = useState(defaultCount)
 
   const changeCount = (delta) => {
-    setCount(counter + delta)
+    setCount(currentCount => {
+      const newCount = currentCount + delta
+      localStorage.setItem('counter', JSON.stringify(newCount))
+      return newCount
+    }
+    )
   }
 
   return (
