@@ -1,0 +1,51 @@
+@baseUrl=http://localhost:3001
+
+### Complete this file with your own request to tests your API
+
+### Ajouter un commentaire correct pour un livre
+POST {{baseUrl}}/books/6461f476d9a9da9dbeade34e/comment
+Content-Type: application/json
+
+{
+  "username": "john_doe",
+  "comment": "Ce livre est fascinant et très bien écrit."
+}
+
+### Tenter d'ajouter un commentaire non valide de 5 caractères
+POST {{baseUrl}}/books/6461f476d9a9da9dbeade34e/comment
+Content-Type: application/json
+
+{
+  "username": "john_doe",
+  "comment": "Court"
+}
+
+### Tenter d'ajouter un commentaire pour un username invalide de 3 caractères
+POST {{baseUrl}}/books/6461f476d9a9da9dbeade34e/comment
+Content-Type: application/json
+
+{
+  "username": "abc",
+  "comment": "Ce livre est fascinant et très bien écrit."
+}
+
+### Tenter d'ajouter un commentaire pour un livre qui n'existe pas
+POST {{baseUrl}}/books/invalid_id/comment
+Content-Type: application/json
+
+{
+  "username": "john_doe",
+  "comment": "Ce livre est fascinant et très bien écrit."
+}
+
+### Tenter d'ajouter un commentaire pour un livre déjà commenté par ce username
+POST {{baseUrl}}/books/6461f476d9a9da9dbeade34e/comment
+Content-Type: application/json
+
+{
+  "username": "john_doe",
+  "comment": "Ce livre est fascinant et très bien écrit."
+}
+
+### Lire tous les livres et les commentaires associés
+GET {{baseUrl}}/books
